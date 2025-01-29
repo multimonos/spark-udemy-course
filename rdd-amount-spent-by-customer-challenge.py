@@ -8,6 +8,10 @@ def createOrder(raw: str):  # str -> (str,float)
     return cid, cost
 
 
+def swapPair(x):
+    return x[1], x[0]
+
+
 if __name__ == "__main__":
     # config
     conf = SparkConf().setMaster('local').setAppName('friends_by_age')
@@ -25,8 +29,11 @@ if __name__ == "__main__":
     customerTotals = orders.reduceByKey(lambda acc, cost: acc + cost)  # (str,float)[] -> (str,float)[]
     print(f'totals: {customerTotals.take(3)}')
 
-    # display
-    rs = customerTotals.sortByKey().collect()
+    # sort by total asc
+    sortedTotals = customerTotals.map(swapPair).sortByKey()
 
-    for cid, total in rs:
-        print(f'{cid} : {total:,.2f}')
+    # display
+    rs = sortedTotals.collect()
+
+    for total, cid in rs:
+        print(f'{total:,.2f} : {cid}')

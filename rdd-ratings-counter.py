@@ -2,8 +2,8 @@
 Notes
 
 A few ways to run this script,
-- python ./ratings-counter.py
-- spark-submit ./ratings-counter.py
+- python ./rdd-ratings-counter.py
+- spark-submit ./rdd-ratings-counter.py
 
 Analyzes a bunch of movie data to generate a histogram of each rating number.
 """
