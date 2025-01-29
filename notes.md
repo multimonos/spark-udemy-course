@@ -3,10 +3,12 @@
 # Notes
 
 ## RDD
+
 Core of spark.
 
 ### RDD Transforms
-RDD transforms do NOT modify the rdd in place.  A new "copy" is returned.
+
+RDD transforms do NOT modify the rdd in place. A new "copy" is returned.
 
 Examples,
 
@@ -30,6 +32,44 @@ Examples,
 - take
 - top
 - reduce
+
+## SparkSQL
+
+- extends rdd to dataframe
+- can use schema
+- +rw json, hive,parquet, csv
+- connect to jdbc/odbc, tableau
+- create a `SparkSession` instead of `SparkContext`
+- to create dataframe `df = spark.read.json(path/to/json)`
+- `spark.sql(sql) -> dataframe`
+- orm is available instead of sql commands
+- convert `df -> rdd` is possible
+- `dataframe` is the new "interface" we can rely on when consuming the data in other spark services
+- exposes a data server via j/odbc
+- user defined functions ( udf ) is possible for custom ops within a sql statement
+
+## Chaining
+
+Given that spark uses a lot of method chaining,
+
+- filter first
+- group similar ops
+- transform then action, ie, `filter, map, groupBy` then `show, collect`
+ 
+Break long chaings into multiple lines using 
+```python
+(
+    dataframe
+    .filter((df.age >= 13) & (df.age <= 19))
+    .orderBy('age')
+    .show()
+)
+```
+
+### Dataframe vs. Dataset
+
+- dataset are typed ... can wrap row data ... scala primary dtype
+- dataframe are untyped ... row data ... python primary dtype
 
 # Setup
 
