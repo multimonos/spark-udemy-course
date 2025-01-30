@@ -2,6 +2,12 @@
 
 # Notes
 
+## Choice of objects
+
+- dataframe or rdd?
+    - structured : dataframe
+    - unstructured : maybe rdd is better
+
 ## RDD
 
 Core of spark.
@@ -48,15 +54,16 @@ Examples,
 - exposes a data server via j/odbc
 - user defined functions ( udf ) is possible for custom ops within a sql statement
 
-## Chaining
+### Chaining
 
 Given that spark uses a lot of method chaining,
 
 - filter first
 - group similar ops
 - transform then action, ie, `filter, map, groupBy` then `show, collect`
- 
-Break long chaings into multiple lines using 
+
+Break long chaings into multiple lines using
+
 ```python
 (
     dataframe
@@ -65,6 +72,15 @@ Break long chaings into multiple lines using
     .show()
 )
 ```
+
+### Functions
+
+- `split(delim)` : str column to array column
+- `explode()` : array column to rows / flatten array column
+- `withColumn(name, expr)` : add, replace, modify a column
+- `lower()` : to lowercase
+- `orderby(name)` : preferred for dataframe
+- `sort(name)` :  alias of orderby for compat
 
 ### Dataframe vs. Dataset
 
@@ -96,7 +112,9 @@ brew install apache-spark
 - installed via `brew install scala`
 - after install brew said
 
+```
 To use with IntelliJ, set the Scala home to:
 /opt/homebrew/opt/scala/idea
+```
 
 
