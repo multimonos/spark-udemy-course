@@ -26,14 +26,14 @@ if __name__ == "__main__":
     print(f'pairs: {orders.take(3)}')
 
     # sum amount spent by each Customer
-    customerTotals = orders.reduceByKey(lambda acc, cost: acc + cost)  # (str,float)[] -> (str,float)[]
-    print(f'totals: {customerTotals.take(3)}')
+    customer_totals = orders.reduceByKey(lambda acc, cost: acc + cost)  # (str,float)[] -> (str,float)[]
+    print(f'totals: {customer_totals.take(3)}')
 
     # sort by total asc
-    sortedTotals = customerTotals.map(swapPair).sortByKey()
+    sorted_totals = customer_totals.map(swapPair).sortByKey()
 
     # display
-    rs = sortedTotals.collect()
+    rs = sorted_totals.collect()
 
     for total, cid in rs:
         print(f'{total:,.2f} : {cid}')
