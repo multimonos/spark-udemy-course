@@ -87,6 +87,17 @@ Break long chaings into multiple lines using
 - dataset are typed ... can wrap row data ... scala primary dtype
 - dataframe are untyped ... row data ... python primary dtype
 
+### Broadcast Variable
+
+- sort of creates a global variable that is available on each node for consumption
+- `spark.broadcast()` sends the variable to each executor
+- broadcasted value can be consumed in any way ... oi
+
+### Accumulator
+
+- allow many executors to increment a shared variable  ... Q: race conds?
+
+
 # Setup
 
 - requires python 3.10.x
