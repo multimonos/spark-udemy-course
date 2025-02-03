@@ -97,6 +97,11 @@ Break long chaings into multiple lines using
 
 - allow many executors to increment a shared variable  ... Q: race conds?
 
+## Dataframe Caching
+- any time you perform more than one Action on a df you should cache it to prevent re-evaluation
+- use `.cache()` and `.persist()`
+- `cache()` : caches to memory
+- `persist()` : caches to disk; recovery possible; resource intensive
 
 # Setup
 
