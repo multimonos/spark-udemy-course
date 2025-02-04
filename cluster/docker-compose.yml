@@ -6,8 +6,6 @@
 # - G1GC garbage collector for better arm64 perf
 # - resource limits prevent container memory issues
 # ---
-version: '3'
-
 services:
   spark-master:
     image: apache/spark:3.4.0
