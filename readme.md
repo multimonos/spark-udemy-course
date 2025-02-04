@@ -39,7 +39,9 @@ Examples,
 - top
 - reduce
 
-## SparkSQL
+## Dataframes
+
+### SparkSQL
 
 - extends rdd to dataframe
 - can use schema
@@ -87,21 +89,28 @@ Break long chaings into multiple lines using
 - dataset are typed ... can wrap row data ... scala primary dtype
 - dataframe are untyped ... row data ... python primary dtype
 
-### Broadcast Variable
+### Dataframe Caching
+
+- any time you perform more than one Action on a df you should cache it to prevent re-evaluation
+- use `.cache()` and `.persist()`
+- `cache()` : caches to memory
+- `persist()` : caches to disk; recovery possible; resource intensive
+
+## Broadcast Variable
 
 - sort of creates a global variable that is available on each node for consumption
 - `spark.broadcast()` sends the variable to each executor
 - broadcasted value can be consumed in any way ... oi
 
-### Accumulator
+## Accumulator
 
-- allow many executors to increment a shared variable  ... Q: race conds?
+- allow many executors to increment a shared variable ... Q: race conds?
 
-## Dataframe Caching
-- any time you perform more than one Action on a df you should cache it to prevent re-evaluation
-- use `.cache()` and `.persist()`
-- `cache()` : caches to memory
-- `persist()` : caches to disk; recovery possible; resource intensive
+
+# Clustering
+- `partitionBy()` how to chunk rdd data for an executor
+- partitioning should benefit `join, cogroup, groupWith, join, leftOutJoin, rightOuterJoin, groupByKey, reduceByKey, combineByKey, lookup`
+- ideally we want as many partitions as we have cores / executors ... as many as will fit in available memory
 
 # Setup
 
