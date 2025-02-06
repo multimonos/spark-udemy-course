@@ -9,12 +9,11 @@ Example,
 
 Can we predict revenue based on page speed using linear model?
 """
-from typing import List, Tuple
+from typing import Tuple
 
-from pyspark.sql import SparkSession, DataFrame
-from pyspark.rdd import RDD
 from pyspark.ml.linalg import Vectors
 from pyspark.ml.regression import LinearRegression
+from pyspark.sql import DataFrame, SparkSession
 
 
 def load_dataset(ctx: SparkSession, path: str) -> DataFrame:
