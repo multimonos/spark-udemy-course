@@ -106,17 +106,24 @@ Break long chaings into multiple lines using
 
 - allow many executors to increment a shared variable ... Q: race conds?
 
-
 # Clustering
+
 - `partitionBy()` how to chunk rdd data for an executor
-- partitioning should benefit `join, cogroup, groupWith, join, leftOutJoin, rightOuterJoin, groupByKey, reduceByKey, combineByKey, lookup`
+- partitioning should
+  benefit `join, cogroup, groupWith, join, leftOutJoin, rightOuterJoin, groupByKey, reduceByKey, combineByKey, lookup`
 - ideally we want as many partitions as we have cores / executors ... as many as will fit in available memory
+
+# Structured Streaming
+
+- schema + unbounded dataframe
+- new data -> new df row
 
 # Setup
 
 - requires python 3.10.x
 
 ```bash
+brew install openblas  # for ml.fit()
 brew install openjdk@17
 brew install scala
 brew install apache-spark
